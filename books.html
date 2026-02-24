@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>読書記録 | 三鍋卓也</title>
+  <meta name="description" content="三鍋卓也の読書記録。月1冊の読書習慣で読んだ本の感想をまとめています。" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="./favicon.ico" />
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- カスタムCSS -->
+  <link rel="stylesheet" href="./assets/css/style.css" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GM4RGCQXEX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GM4RGCQXEX');
+  </script>
+</head>
+<body class="font-body">
+
+<!-- ============================================
+     Navigation
+     ============================================ -->
+<nav id="navbar"
+     class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm transition-all duration-300"
+     x-data="{ isMenuOpen: false }"
+     @click.outside="isMenuOpen = false">
+  <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="./index.html" class="font-display text-lg font-bold text-primary">
+      三鍋卓也
+    </a>
+    <ul class="hidden md:flex items-center gap-8">
+      <li><a href="./index.html#about"  class="nav-link">About</a></li>
+      <li><a href="./index.html#skills" class="nav-link">Skills</a></li>
+      <li><a href="./index.html#works"  class="nav-link">Works</a></li>
+      <li><a href="./index.html#career" class="nav-link">Career</a></li>
+      <li><a href="./books.html" class="nav-link text-accent">Books</a></li>
+      <li>
+        <a href="./index.html#contact" class="cta-button text-sm py-2 px-6">Contact</a>
+      </li>
+    </ul>
+    <button class="md:hidden text-primary text-xl focus:outline-none"
+            @click.stop="isMenuOpen = !isMenuOpen"
+            :aria-expanded="isMenuOpen"
+            aria-label="メニューを開く">
+      <i class="fa-solid" :class="isMenuOpen ? 'fa-xmark' : 'fa-bars'"></i>
+    </button>
+  </div>
+  <div class="md:hidden bg-white border-t border-gray-100 px-6 py-4 space-y-4"
+       x-show="isMenuOpen"
+       x-transition>
+    <a href="./index.html#about"  @click="isMenuOpen = false" class="block nav-link py-2">About</a>
+    <a href="./index.html#skills" @click="isMenuOpen = false" class="block nav-link py-2">Skills</a>
+    <a href="./index.html#works"  @click="isMenuOpen = false" class="block nav-link py-2">Works</a>
+    <a href="./index.html#career" @click="isMenuOpen = false" class="block nav-link py-2">Career</a>
+    <a href="./books.html" @click="isMenuOpen = false" class="block nav-link py-2 text-accent">Books</a>
+    <a href="./index.html#contact" @click="isMenuOpen = false" class="block nav-link py-2">Contact</a>
+  </div>
+</nav>
+
+<!-- Alpine.js（ナビ用） -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.5/cdn.min.js"></script>
+
+<!-- ============================================
+     Books Header
+     ============================================ -->
+<section class="pt-28 pb-12 bg-surface">
+  <div class="max-w-5xl mx-auto px-6">
+    <h1 class="section-title text-3xl font-bold">Books</h1>
+    <p class="text-sub mt-4">
+      2026年の目標「月1冊の読書」で読んだ本の記録です。
+    </p>
+  </div>
+</section>
+
+<!-- ============================================
+     Book List
+     ============================================ -->
+<!--
+  ┌─────────────────────────────────────────────┐
+  │  本を追加するときは下の「ここからコピー」〜   │
+  │ 「ここまでコピー」ブロックを複製して、       │
+  │  以下の3箇所を書き換えてください：           │
+  │                                             │
+  │  1. 読んだ月  → 例: 2026年3月               │
+  │  2. 書籍名・Amazonリンク                     │
+  │  3. 感想テキスト                             │
+  └─────────────────────────────────────────────┘
+-->
+<section class="py-16 bg-bg">
+  <div class="max-w-3xl mx-auto px-6 space-y-8">
+
+    <!-- ===== ここからコピー ===== -->
+    <article class="bg-white border border-[var(--color-border)] rounded-xl shadow-[var(--shadow-card)] overflow-hidden">
+      <div class="bg-gradient-to-r from-[var(--color-primary)] to-[#2d5a8e] px-6 py-3">
+        <p class="text-white/80 text-sm font-bold tracking-widest">2026年2月</p>
+      </div>
+      <div class="p-6">
+        <h2 class="font-display font-bold text-primary text-lg mb-3">
+          <a href="https://www.amazon.co.jp/dp/4344986628"
+             target="_blank" rel="noopener noreferrer"
+             class="hover:text-accent transition-colors duration-300">
+            <i class="fa-brands fa-amazon mr-2 text-sm"></i>コンサル一年目が学ぶこと
+          </a>
+        </h2>
+        <p class="text-text-main text-sm leading-relaxed">
+          コンサルタントとして活動を始めるにあたり、基礎を固めるために読んだ一冊。
+          「結論から話す」「事実と意見を分ける」「仮説思考」など、すぐに実践できるスキルが体系的にまとまっている。
+          コンサル業界に限らず、すべてのビジネスパーソンに通じる内容。
+          特に「期待値を超える」という考え方は、今後の仕事の基準として意識していきたい。
+        </p>
+      </div>
+    </article>
+    <!-- ===== ここまでコピー ===== -->
+
+  </div>
+</section>
+
+<!-- ============================================
+     Footer
+     ============================================ -->
+<footer class="footer py-8">
+  <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-white/60 text-sm">
+      &copy; 2026 三鍋卓也. All rights reserved.
+    </p>
+    <div class="flex gap-3">
+      <a href="https://x.com/hyoketu00"
+         target="_blank" rel="noopener noreferrer"
+         class="sns-icon-link" aria-label="X（Twitter）">
+        <i class="fa-brands fa-x-twitter"></i>
+      </a>
+      <a href="https://www.instagram.com/takuyahyoketu"
+         target="_blank" rel="noopener noreferrer"
+         class="sns-icon-link" aria-label="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- Navbar scroll shadow -->
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('navbar-scrolled', window.scrollY > 20);
+  });
+</script>
+
+</body>
+</html>
