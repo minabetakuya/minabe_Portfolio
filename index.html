@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>三鍋卓也 | ITコンサルタント・エンジニア</title>
+  <meta name="description" content="上流から実装まで、全領域を経験しているエンジニア。IT業界10年目。上流SE・WEBエンジニア・PjMを経てITコンサルタントへ。" />
+
+  <!-- OGP -->
+  <meta property="og:title" content="三鍋卓也 | ITコンサルタント・エンジニア" />
+  <meta property="og:description" content="上流から実装まで、全領域を経験しているエンジニア" />
+  <meta property="og:image" content="./assets/images/ogp.png" />
+  <meta property="og:url" content="https://[GitHubユーザー名].github.io/portfolio/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@hyoketu00" />
+  <meta name="twitter:title" content="三鍋卓也 | ITコンサルタント・エンジニア" />
+  <meta name="twitter:description" content="上流から実装まで、全領域を経験しているエンジニア" />
+  <meta name="twitter:image" content="./assets/images/ogp.png" />
+
+  <!-- Favicon（favicon.ioで生成後に差し替え） -->
+  <link rel="icon" href="./favicon.ico" />
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS（スクロールアニメーション） -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+  <!-- Alpine.js -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.5/cdn.min.js"></script>
+
+  <!-- Font Awesome（SNSアイコン） -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- カスタムCSS -->
+  <link rel="stylesheet" href="./assets/css/style.css" />
+
+  <!-- Google Analytics 4（測定ID取得後にG-XXXXXXXXXXを差し替え） -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
+</head>
+<body class="font-body">
+
+<!-- ============================================
+     Navigation
+     ============================================ -->
+<nav id="navbar"
+     class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm transition-all duration-300"
+     x-data="{
+         isMenuOpen: false,
+         closeOnResize() {
+           if (window.innerWidth >= 768) this.isMenuOpen = false;
+         }
+       }"
+     x-init="window.addEventListener('resize', () => closeOnResize())"
+     @click.outside="isMenuOpen = false">
+  <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+
+    <!-- ロゴ -->
+    <a href="#hero" class="font-display text-lg font-bold text-primary">
+      三鍋卓也
+    </a>
+
+    <!-- PC ナビ -->
+    <ul class="hidden md:flex items-center gap-8">
+      <li><a href="#about"   class="nav-link">About</a></li>
+      <li><a href="#skills"  class="nav-link">Skills</a></li>
+      <li><a href="#works"   class="nav-link">Works</a></li>
+      <li><a href="#career"  class="nav-link">Career</a></li>
+      <li>
+        <a href="#contact" class="cta-button text-sm py-2 px-6">Contact</a>
+      </li>
+    </ul>
+
+    <!-- ハンバーガーボタン（スマホのみ表示） -->
+    <button class="md:hidden text-primary text-xl focus:outline-none"
+            @click.stop="isMenuOpen = !isMenuOpen"
+            :aria-expanded="isMenuOpen"
+            aria-label="メニューを開く">
+      <i class="fa-solid" :class="isMenuOpen ? 'fa-xmark' : 'fa-bars'"></i>
+    </button>
+  </div>
+
+  <!-- モバイルメニュー（スマホのみ表示） -->
+  <div class="md:hidden bg-white border-t border-gray-100 px-6 py-4 space-y-4"
+       x-show="isMenuOpen"
+       x-transition:enter="transition ease-out duration-200"
+       x-transition:enter-start="opacity-0 -translate-y-2"
+       x-transition:enter-end="opacity-100 translate-y-0"
+       x-transition:leave="transition ease-in duration-150"
+       x-transition:leave-start="opacity-100 translate-y-0"
+       x-transition:leave-end="opacity-0 -translate-y-2">
+    <a href="#about"   @click="isMenuOpen = false" class="block nav-link py-2">About</a>
+    <a href="#skills"  @click="isMenuOpen = false" class="block nav-link py-2">Skills</a>
+    <a href="#works"   @click="isMenuOpen = false" class="block nav-link py-2">Works</a>
+    <a href="#career"  @click="isMenuOpen = false" class="block nav-link py-2">Career</a>
+    <a href="#contact" @click="isMenuOpen = false" class="block nav-link py-2">Contact</a>
+  </div>
+</nav>
+
+<!-- ============================================
+     Hero
+     ============================================ -->
+<section id="hero" class="hero-section min-h-svh flex items-center pt-20">
+  <div class="max-w-5xl mx-auto px-6 py-20 w-full">
+    <div class="flex flex-col md:flex-row items-center gap-12">
+
+      <!-- テキスト -->
+      <div class="flex-1 text-center md:text-left" data-aos="fade-right">
+        <p class="text-accent font-bold text-sm tracking-widest uppercase mb-3">
+          IT Consultant / Engineer
+        </p>
+        <h1 class="font-display text-4xl md:text-5xl font-bold text-primary leading-tight mb-4">
+          三鍋 卓也
+        </h1>
+        <p class="text-xl md:text-2xl font-display text-text-main mb-6 leading-relaxed">
+          上流から実装まで、<br class="md:hidden" />
+          全領域を経験しているエンジニア
+        </p>
+        <p class="text-sub text-sm md:text-base mb-8 max-w-md mx-auto md:mx-0">
+          IT業界10年目。上流SE・WEBエンジニア・PjMを経て、<br />
+          2026年よりITコンサルタントとして活動中。
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+          <a href="#contact" class="cta-button text-center">お問い合わせ</a>
+          <a href="#works"   class="cta-button-outline text-center">実績を見る</a>
+        </div>
+      </div>
+
+      <!-- アバター -->
+      <div class="flex-shrink-0" data-aos="fade-left" data-aos-delay="150">
+        <img src="./assets/images/profile/avatar.jpg"
+             alt="三鍋卓也のプロフィール写真"
+             width="256"
+             height="256"
+             class="hero-avatar w-48 h-48 md:w-64 md:h-64" />
+      </div>
+    </div>
+
+    <!-- スクロール矢印 -->
+    <div class="text-center mt-16 scroll-arrow">
+      <a href="#about" aria-label="下にスクロール">
+        <i class="fa-solid fa-chevron-down text-accent text-xl"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     About
+     ============================================ -->
+<section id="about" class="py-24 bg-surface">
+  <div class="max-w-5xl mx-auto px-6">
+
+    <div data-aos="fade-up">
+      <h2 class="section-title text-3xl font-bold mb-12">About</h2>
+    </div>
+
+    <div class="flex flex-col md:flex-row gap-12 items-start">
+
+      <!-- テキスト -->
+      <div class="flex-1" data-aos="fade-up" data-aos-delay="100">
+        <p class="text-text-main text-base md:text-lg leading-relaxed mb-6">
+          1989年生まれ、36歳。IT業界に入って10年目。
+          PMO・WEBエンジニア・プロジェクトマネージャーと
+          幅広いポジションを経験し、2026年2月より
+          <span class="text-accent font-bold">ULSコンサルティング</span>にてITコンサルタントとして活動しています。
+        </p>
+        <p class="text-text-main text-base md:text-lg leading-relaxed mb-6">
+          技術だけでなく、ビジネス視点での課題解決を追求しています。
+          「業界横断的なビジネス構造を理解し、ドメインに依存しない
+          本質的な課題解決能力の確立」を2026年の目標に掲げています。
+        </p>
+        <p class="text-text-main text-base md:text-lg leading-relaxed">
+          2026年は週1回のフェルミ推定・MECE提案資料作成、月1冊の読書、
+          月1回のオフライン勉強会参加を習慣化し、日々研鑽を積んでいます。
+        </p>
+      </div>
+
+      <!-- カジュアル写真 -->
+      <div class="flex flex-col sm:flex-row md:flex-col gap-6 flex-shrink-0" data-aos="fade-up" data-aos-delay="200">
+        <img src="./assets/images/profile/casual-01.png"
+             alt="沖縄でシロクマと"
+             width="224"
+             height="224"
+             loading="lazy"
+             class="rounded-xl shadow-md w-full sm:w-48 md:w-56 object-cover aspect-square" />
+        <img src="./assets/images/profile/casual-02.jpg"
+             alt="テキ屋で焼きそば"
+             width="224"
+             height="224"
+             loading="lazy"
+             class="rounded-xl shadow-md w-full sm:w-48 md:w-56 object-cover aspect-square" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     Skills
+     ============================================ -->
+<section id="skills" class="py-24 bg-bg">
+  <div class="max-w-5xl mx-auto px-6">
+
+    <div data-aos="fade-up">
+      <h2 class="section-title text-3xl font-bold mb-12">Skills</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- フロントエンド -->
+      <div class="skill-card" data-aos="fade-up" data-aos-delay="0">
+        <p class="skill-category-label">Frontend</p>
+        <div>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">jQuery</span>
+          <span class="skill-tag">HTML + CSS</span>
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Next.js</span>
+          <span class="skill-tag">Vue</span>
+          <span class="skill-tag">Nuxt.js</span>
+          <span class="skill-tag">TypeScript</span>
+        </div>
+      </div>
+
+      <!-- バックエンド -->
+      <div class="skill-card" data-aos="fade-up" data-aos-delay="80">
+        <p class="skill-category-label">Backend</p>
+        <div>
+          <span class="skill-tag">NestJS</span>
+          <span class="skill-tag">Drupal</span>
+          <span class="skill-tag">PHP</span>
+          <span class="skill-tag">FastAPI</span>
+        </div>
+      </div>
+
+      <!-- インフラ -->
+      <div class="skill-card" data-aos="fade-up" data-aos-delay="160">
+        <p class="skill-category-label">Infrastructure</p>
+        <div>
+          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">ECS on Fargate</span>
+          <span class="skill-tag">CI/CD</span>
+          <span class="skill-tag">Zabbix</span>
+        </div>
+      </div>
+
+      <!-- ツール -->
+      <div class="skill-card" data-aos="fade-up" data-aos-delay="240">
+        <p class="skill-category-label">Tools & Analytics</p>
+        <div>
+          <span class="skill-tag">GA4</span>
+          <span class="skill-tag">GTM</span>
+          <span class="skill-tag">Tableau</span>
+          <span class="skill-tag">LINE API</span>
+          <span class="skill-tag">Excel VBA</span>
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">Backlog</span>
+          <span class="skill-tag">Docker</span>
+        </div>
+      </div>
+
+      <!-- マネジメント -->
+      <div class="skill-card" data-aos="fade-up" data-aos-delay="320">
+        <p class="skill-category-label">Management</p>
+        <div>
+          <span class="skill-tag">PMO</span>
+          <span class="skill-tag">PjM</span>
+          <span class="skill-tag">QCD管理</span>
+          <span class="skill-tag">顧客折衝</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     Works
+     ============================================ -->
+<section id="works" class="py-24 bg-surface">
+  <div class="max-w-5xl mx-auto px-6">
+
+    <div data-aos="fade-up">
+      <h2 class="section-title text-3xl font-bold mb-12">Works</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- Work 01 -->
+      <div class="work-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="work-card-header justify-between px-6">
+          <span class="work-number">01</span>
+          <div class="text-right">
+            <span class="work-badge">PjM</span>
+            <p class="text-white/60 text-xs mt-1">2025年2月〜2025年12月</p>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-primary text-lg mb-1">
+            CM等オーディション業務のDX
+          </h3>
+          <p class="text-accent text-xs font-bold mb-3">予算 4,000万円 ／ 9名チーム</p>
+          <p class="text-sub text-sm mb-4">
+            オーディション業務全体のDX化を目的とした大規模WEBアプリケーション開発。
+            ElastiCache for Redisによるキャッシュ戦略でAPI応答速度を大幅改善。
+            AWS Bedrock・Rekognition・MediaConvertを活用したAI機能を実装。
+            運用保守フェーズの提案により30万/月の継続契約を獲得。
+          </p>
+          <div class="flex flex-wrap gap-1">
+            <span class="skill-tag">Next.js</span>
+            <span class="skill-tag">NestJS</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">ECS on Fargate</span>
+            <span class="skill-tag">ElastiCache</span>
+            <span class="skill-tag">AWS Bedrock</span>
+            <span class="skill-tag">Rekognition</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Work 02 -->
+      <div class="work-card" data-aos="fade-up" data-aos-delay="80">
+        <div class="work-card-header justify-between px-6">
+          <span class="work-number">02</span>
+          <div class="text-right">
+            <span class="work-badge">PjM / BE / インフラ</span>
+            <p class="text-white/60 text-xs mt-1">2024年10月〜2025年6月</p>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-primary text-lg mb-1">
+            ロボット農機 自動運行計画WEBアプリ開発
+          </h3>
+          <p class="text-accent text-xs font-bold mb-3">予算 1,000万円 ／ 4名チーム</p>
+          <p class="text-sub text-sm mb-4">
+            ロボット農機の自動運行計画を管理するWEBアプリケーションをゼロから開発。
+            バックエンド全領域（設計・API実装・AWS構築・テスト）を担当。
+            AWS Lambdaを活用しランニングコストを抑えたアーキテクチャを実現。
+            国の実証事業への参画を達成。
+          </p>
+          <div class="flex flex-wrap gap-1">
+            <span class="skill-tag">Next.js</span>
+            <span class="skill-tag">NestJS</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">AWS Lambda</span>
+            <span class="skill-tag">PostgreSQL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Work 03 -->
+      <div class="work-card" data-aos="fade-up" data-aos-delay="160">
+        <div class="work-card-header justify-between px-6">
+          <span class="work-number">03</span>
+          <div class="text-right">
+            <span class="work-badge">PM / BE</span>
+            <p class="text-white/60 text-xs mt-1">2024年9月〜2024年12月</p>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-primary text-lg mb-1">
+            LINEミニアプリ 予約システム構築
+          </h3>
+          <p class="text-accent text-xs font-bold mb-3">社内プロジェクト ／ 3名チーム</p>
+          <p class="text-sub text-sm mb-4">
+            LINE上で動作する予約システムを4ヶ月でリリース。
+            社内フック商材として営業活動に活用できるLPも作成。
+            WEBアプリケーションのフック商材として事業貢献。
+          </p>
+          <div class="flex flex-wrap gap-1">
+            <span class="skill-tag">Next.js</span>
+            <span class="skill-tag">NestJS</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">LINE API</span>
+            <span class="skill-tag">Supabase</span>
+            <span class="skill-tag">Vercel</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Work 04 -->
+      <div class="work-card" data-aos="fade-up" data-aos-delay="240">
+        <div class="work-card-header justify-between px-6">
+          <span class="work-number">04</span>
+          <div class="text-right">
+            <span class="work-badge">PM / BE / FE</span>
+            <p class="text-white/60 text-xs mt-1">2020年11月〜2023年7月</p>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-primary text-lg mb-1">
+            受託開発 複数プロジェクト納品
+          </h3>
+          <p class="text-accent text-xs font-bold mb-3">バーチャル展示会 / 料金計算 / 映像DX / 資料管理 / クラウドファンディング</p>
+          <p class="text-sub text-sm mb-4">
+            フルスタックエンジニア・PMとして多様な受託開発を担当。
+            three.jsを使ったバーチャル展示会システム・Salesforce API連携の料金計算システム・
+            補助金申請業務WEB化など幅広い領域で納品を実現。
+          </p>
+          <div class="flex flex-wrap gap-1">
+            <span class="skill-tag">Next.js</span>
+            <span class="skill-tag">NestJS</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">Firebase</span>
+            <span class="skill-tag">three.js</span>
+            <span class="skill-tag">Salesforce API</span>
+            <span class="skill-tag">GAS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Work 05 -->
+      <div class="work-card md:col-span-2" data-aos="fade-up" data-aos-delay="320">
+        <div class="work-card-header justify-between px-6">
+          <span class="work-number">05</span>
+          <div class="text-right">
+            <span class="work-badge">PM / PMO</span>
+            <p class="text-white/60 text-xs mt-1">2015年4月〜2020年9月</p>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-bold text-primary text-lg mb-1">
+            マンション電気料金見える化システム開発
+          </h3>
+          <p class="text-accent text-xs font-bold mb-3">月間5万PV ／ 5名チーム</p>
+          <p class="text-sub text-sm mb-4">
+            各マンションの電力メータをJSONで受信しWEB画面にリアルタイム表示するシステムを構築。
+            月間5万PVのサイトを運用し、Tableauによるデータ分析・離脱ページ改善・
+            Zabbixによるサーバー監視体制を構築。要件定義から運用改善まで一気通貫で担当。
+          </p>
+          <div class="flex flex-wrap gap-1">
+            <span class="skill-tag">PHP</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Tableau</span>
+            <span class="skill-tag">Zabbix</span>
+            <span class="skill-tag">GA4</span>
+            <span class="skill-tag">GTM</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     Career
+     ============================================ -->
+<section id="career" class="py-24 bg-bg">
+  <div class="max-w-5xl mx-auto px-6">
+
+    <div data-aos="fade-up">
+      <h2 class="section-title text-3xl font-bold mb-12">Career</h2>
+    </div>
+
+    <div class="timeline max-w-3xl" data-aos="fade-up" data-aos-delay="100">
+
+      <!-- Phase 01 -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-period">2026年2月〜現在</p>
+        <p class="timeline-role">ITコンサルタント</p>
+        <div class="timeline-card">
+          <p class="text-accent text-xs font-bold mb-2">ULSコンサルティング株式会社</p>
+          <p class="text-sub text-sm">
+            業界横断的なビジネス構造の理解と、ドメインに依存しない本質的な課題解決能力の確立を目指して活動中。
+            週1回のフェルミ推定・MECE提案資料作成、月1冊の読書、月1回のオフライン勉強会参加を習慣化。
+          </p>
+        </div>
+      </div>
+
+      <!-- Phase 02 -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-period">2024年1月〜2026年1月</p>
+        <p class="timeline-role">PjM / フルスタックエンジニア</p>
+        <div class="timeline-card">
+          <p class="text-accent text-xs font-bold mb-2">株式会社Y's｜受託開発 + ラボ型準委任開発（169名）</p>
+          <p class="text-sub text-sm mb-3">
+            2024年4月にDEVLOP開発チームをゼロから立ち上げ。初年度予算500万・2025年度予算5,000万を達成。
+            4,000万円規模のCMオーディションDXプロジェクトをPjMとして計画通りに納品。
+            PjM育成・採用・営業活動・カルチャー浸透（60%→97%）など組織づくりにも貢献。
+          </p>
+          <div class="flex flex-wrap gap-1">
+            <span class="skill-tag">Next.js</span>
+            <span class="skill-tag">NestJS</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">ECS on Fargate</span>
+            <span class="skill-tag">AWS Bedrock</span>
+            <span class="skill-tag">ElastiCache</span>
+            <span class="skill-tag">QCD管理</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 03 -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-period">2020年10月〜2023年11月</p>
+        <p class="timeline-role">フルスタックエンジニア / PM</p>
+        <div class="timeline-card">
+          <p class="text-accent text-xs font-bold mb-2">株式会社NEOPA｜受託開発・フルリモート（30名）</p>
+          <p class="text-sub text-sm mb-3">
+            バーチャル展示会システム・料金計算システム・映像系DXマッチングサービス・
+            資料管理アプリ・クラウドファンディング保守など多様な受託開発に従事。
+            フロントエンドからバックエンド・インフラまで全領域をカバーし、6件のプロジェクトを完遂。
+          </p>
+          <div class="flex flex-wrap gap-1">
+            <span class="skill-tag">Next.js</span>
+            <span class="skill-tag">NestJS</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">Firebase</span>
+            <span class="skill-tag">three.js</span>
+            <span class="skill-tag">GAS</span>
+            <span class="skill-tag">Salesforce API</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 04 -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-period">2015年4月〜2020年9月</p>
+        <p class="timeline-role">上流SE / PMO</p>
+        <div class="timeline-card">
+          <p class="text-accent text-xs font-bold mb-2">株式会社リンク｜SES（120名）</p>
+          <p class="text-sub text-sm mb-3">
+            マンション電気料金見える化システムを要件定義から運用改善まで一気通貫で担当。
+            月間5万PVのサイトを構築・運用し、Tableauによるデータ分析・離脱ページ改善・
+            Zabbixによるサーバー監視体制を整備。
+          </p>
+          <div class="flex flex-wrap gap-1">
+            <span class="skill-tag">PHP</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Tableau</span>
+            <span class="skill-tag">Zabbix</span>
+            <span class="skill-tag">GA4</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 05 -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-period">2014年8月〜2015年3月</p>
+        <p class="timeline-role">営業職</p>
+        <div class="timeline-card">
+          <p class="text-accent text-xs font-bold mb-2">株式会社エスケイ通信｜ITパッケージ製品営業（200名）</p>
+          <p class="text-sub text-sm">
+            SEOパッケージ商材の営業として1日200コールのテレアポと新規開拓訪問営業を担当。
+            単価約100万円の案件を月2本ペースで受注。ソリューション提案力を培う。
+          </p>
+        </div>
+      </div>
+
+      <!-- Phase 06 -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-period">2008年4月〜2014年7月</p>
+        <p class="timeline-role">電気設備エンジニア</p>
+        <div class="timeline-card">
+          <p class="text-accent text-xs font-bold mb-2">丸住製紙株式会社｜製紙業・自家発電設備（600名）</p>
+          <p class="text-sub text-sm">
+            製紙業界にてボイラー設備の運用保守・CADによる低圧シーケンス回路設計・
+            業者への見積・発注管理・現場監督を6年間担当。設備トラブルの迅速解決と予防保全に貢献。
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     Contact
+     ============================================ -->
+<section id="contact" class="contact-section py-24">
+  <div class="max-w-5xl mx-auto px-6 text-center">
+
+    <div data-aos="fade-up">
+      <h2 class="font-display text-3xl font-bold text-white mb-4">Contact</h2>
+      <div class="w-12 h-0.5 bg-accent mx-auto mb-8"></div>
+      <p class="text-white/80 text-base mb-12 max-w-md mx-auto">
+        お仕事のご依頼・ご相談はお気軽にお問い合わせください。
+      </p>
+    </div>
+
+    <!-- お問い合わせボタン -->
+    <div data-aos="fade-up" data-aos-delay="100">
+      <a href="https://docs.google.com/forms/[GoogleフォームのURLに差し替え]"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="cta-button text-lg px-10 py-4 inline-block mb-16">
+        <i class="fa-solid fa-envelope mr-2"></i>お問い合わせフォームへ
+      </a>
+    </div>
+
+    <!-- SNSリンク -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-12"
+         data-aos="fade-up" data-aos-delay="200">
+
+      <!-- X（Twitter） -->
+      <div class="text-center">
+        <a href="https://x.com/hyoketu00"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="inline-flex items-center gap-3 text-white hover:text-accent transition-colors duration-300">
+          <div class="sns-icon-link">
+            <i class="fa-brands fa-x-twitter"></i>
+          </div>
+          <span class="font-bold">@hyoketu00</span>
+        </a>
+      </div>
+
+      <!-- Instagram -->
+      <div class="text-center">
+        <p class="text-white/70 text-sm mb-3 font-bold tracking-widest uppercase">Instagram</p>
+        <img src="./assets/images/instagram-qr.png"
+             alt="Instagram QRコード @TAKUYAHYOKETU"
+             width="160"
+             height="160"
+             loading="lazy"
+             class="instagram-qr mx-auto" />
+        <p class="text-white/70 text-sm mt-2">@TAKUYAHYOKETU</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     Footer
+     ============================================ -->
+<footer class="footer py-8">
+  <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-white/60 text-sm">
+      &copy; 2026 三鍋卓也. All rights reserved.
+    </p>
+    <div class="flex gap-3">
+      <a href="https://x.com/hyoketu00"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="sns-icon-link"
+         aria-label="X（Twitter）">
+        <i class="fa-brands fa-x-twitter"></i>
+      </a>
+      <a href="https://www.instagram.com/takuyahyoketu"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="sns-icon-link"
+         aria-label="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- AOS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<!-- カスタムJS -->
+<script src="./assets/js/main.js"></script>
+
+</body>
+</html>
